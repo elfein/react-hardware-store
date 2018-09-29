@@ -1,4 +1,11 @@
 import React, { Component } from 'react'
+import styled from 'styled-components';
+
+const StyledDiv = styled.div`
+    padding: 10px 0;
+    border-top: 1px solid black;
+    width: 100%;
+`
 
 class Product extends Component {
 
@@ -19,16 +26,16 @@ class Product extends Component {
         const price = this.props.product.price
 
         return (
-            <div >
+            <StyledDiv>
                 <h3>{productName}</h3>
                 <div>{description}</div>
                 <div>{price}</div>
 
-                {this.props.adminView ? 
-                <button onClick={this.deleteProduct}>Delete</button> : 
-                <button onClick={this.buyProduct}>Buy</button>}
+                {this.props.adminView ?
+                    <button onClick={this.deleteProduct}>Delete</button> :
+                    <button onClick={this.buyProduct}>Buy</button>}
 
-            </div>
+            </StyledDiv>
         );
     }
 }

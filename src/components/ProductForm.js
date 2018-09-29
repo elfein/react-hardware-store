@@ -1,4 +1,20 @@
 import React, { Component } from 'react'
+import styled from 'styled-components';
+
+const StyledDiv = styled.div`
+margin-top:20px;
+input {
+    width: 96%;
+    margin: 3px 0;
+}
+[type~=submit] {
+    background-color: #fff;
+    margin: 3px 0;
+    padding: 2px;
+    border: 1px solid rgb(200,200,200);
+    width: 100%;
+}
+`
 
 class ProductForm extends Component {
     state = {
@@ -27,7 +43,7 @@ class ProductForm extends Component {
 
     render() {
         return (
-            <div>
+            <StyledDiv>
                 <form>
                     <div><input name="productName" type="text" placeholder="Name" onChange={this.handleNewProductChange} /></div>
                     <div><input name="description" type="text" placeholder="Description" onChange={this.handleNewProductChange} /></div>
@@ -38,7 +54,7 @@ class ProductForm extends Component {
                     value="Create New Product" 
                     onClick={this.addProduct} /></div>
                 </form>
-            </div>
+            </StyledDiv>
         )
     }
 }

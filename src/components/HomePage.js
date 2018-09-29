@@ -1,6 +1,28 @@
 import React, { Component } from 'react'
 import AdminView from './AdminView';
 import ShopView from './ShopView';
+import styled from 'styled-components';
+
+const StyledDiv = styled.div`
+width: 100%;
+border-bottom: 1px solid #000;
+text-align: center;
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+h1 {
+    font-weight:200;
+}
+button {
+    background-color: #fff;
+    margin: 3px 0;
+    padding: 2px;
+    border: 1px solid rgb(200,200,200);
+}
+#interactions{
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid #000;
+}
+`
 
 class HomePage extends Component {
     state = {
@@ -51,6 +73,12 @@ class HomePage extends Component {
         this.setState({ cartList })
     }
 
+    deleteItemFromCart = (index) => {
+        const cartList = [...this.state.cartList]
+        cartList.splice(index, 1)
+        this.setState({ cartList })
+    }
+
     toggleEditfunction = () => {
         this.setState({
             editSaleItem: !this.state.editSaleItem
@@ -70,9 +98,10 @@ class HomePage extends Component {
 
     render() {
         return (
-            <div>
-                <h1>My Hardware Store</h1>
+            <StyledDiv>
+                <h1>Hardware Store</h1>
                 <div>Currently on Sale: {this.state.itemCurrentlyOnSale}!</div>
+                <div id="interactions">
                 <span><button onClick={this.toggleEditfunction}>
                     {this.state.editSaleItem ? 'Hide' : 'Edit Sale Item'}
                 </button></span>
@@ -84,7 +113,7 @@ class HomePage extends Component {
                         null}
                 </div>
                 <div><button onClick={this.toggleDisplayAdminView} >Show {this.state.displayAdminView ? 'Shop View' : 'Admin View'}</button></div>
-
+                </div>
 
                 {this.state.displayAdminView ?
 
@@ -95,10 +124,11 @@ class HomePage extends Component {
                     <ShopView productList={this.state.productList}
                         // 3. we passed the new function and cartList array DOOOOOOOWN
                         addItemToCart={this.addItemToCart}
+                        deleteItemFromCart={this.deleteItemFromCart}
                         cartList={this.state.cartList} />}
 
 
-            </div>
+            </StyledDiv>
         )
     }
 }
